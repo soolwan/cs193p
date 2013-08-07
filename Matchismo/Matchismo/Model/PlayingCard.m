@@ -43,7 +43,7 @@
              @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
 }
 
-+ (NSUInteger)maxRank { return [self rankStrings].count - 1; }
++ (NSUInteger)maxRank { return [[self rankStrings] count] - 1; }
 
 - (void)setRank:(NSUInteger)rank
 {
