@@ -10,6 +10,27 @@
 
 @implementation PlayingCard
 
+// Override match to work for rank and suit.
+- (int)match:(NSArray *)otherCards
+{
+    int score = 0;
+
+    if (otherCards.count == 1) { // NOTE: More matches in HW1.
+        PlayingCard *otherCard = [otherCards lastObject]; // Returns nil if the array is empty.
+
+        if ([otherCard.suit isEqualToString:self.suit]) {
+            score = 1;
+        } else if (otherCard.rank == self.rank) {
+            // Give 4 times as many points for matching the rank than matching
+            // the suit since there are only 3 cards that will match a given card's
+            // rank, but 12 which will match its suit.
+            score = 4;
+        }
+    }
+
+    return score;
+}
+
 - (NSString *)contents
 {
     //return [NSString stringWithFormat:@"%d%@", self.rank, self.suit];
