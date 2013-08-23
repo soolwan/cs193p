@@ -48,17 +48,26 @@
 
 - (void)updateUI
 {
+    UIImage *cardBackImage = [UIImage imageNamed:@"cardBack.png"];
+    
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
-
         // A button shows its normal title whenever it is in a state or combination of
         // states for which you have not set a title. We need the title set when the button is
         // both selected and disabled.
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+    
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
+
+        if (cardButton.selected == NO) {
+            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+        } else {
+            [cardButton setImage:nil forState:UIControlStateNormal];
+        }
 
         self.resultsLabel.text = self.game.resultOfMove;
     }
