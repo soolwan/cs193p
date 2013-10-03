@@ -64,9 +64,9 @@
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
 
         if (cardButton.selected == NO) {
-            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+            [cardButton setBackgroundImage:cardBackImage forState:UIControlStateNormal];
         } else {
-            [cardButton setImage:nil forState:UIControlStateNormal];
+            [cardButton setBackgroundImage:nil forState:UIControlStateNormal];
         }
 
         self.resultsLabel.text = self.game.resultOfMove;
