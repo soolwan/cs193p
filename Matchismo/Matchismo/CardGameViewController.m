@@ -18,7 +18,6 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gameMode;
 
 @end
 
@@ -32,11 +31,10 @@
 
 - (CardMatchingGame *)game
 {
-    GameMode mode = [self.gameMode selectedSegmentIndex];
     if (!_game) _game =
         [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                           usingDeck:[[PlayingCardDeck alloc] init]
-                                                         inGameMode:mode];
+                                                         inGameMode:TwoCardMode];
     return _game;
 }
 
@@ -77,8 +75,6 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
-    self.gameMode.enabled = NO;
-    
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
     [self updateUI];
@@ -100,15 +96,12 @@
 
 - (IBAction)dealCards:(UIButton *)sender
 {
-    GameMode mode = [self.gameMode selectedSegmentIndex];
     self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[[PlayingCardDeck alloc] init]
-                                                 inGameMode:mode];
+                                                 inGameMode:TwoCardMode];
     
     [self updateUI];
     self.flipCount = 0;
-
-    self.gameMode.enabled = YES;
 }
 
 @end
