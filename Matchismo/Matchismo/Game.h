@@ -11,6 +11,13 @@
 @class Deck;
 @class Card;
 
+typedef NS_ENUM(NSInteger, ResultStatus) {
+    ResultStatusDefault,
+    ResultStatusFlip,
+    ResultStatusMatch,
+    ResultStatusNoMatch
+};
+
 @interface Game : NSObject {
     NSMutableArray *_cards;
     NSString *_resultOfMove;
@@ -19,10 +26,9 @@
 
 @property (strong, nonatomic) NSMutableArray *cards;  // of Card
 
-// Result of move is calculated in the model because
-// it is a disclosure of the game logic. The controller
-// will handle passing the result on to the view.
-@property (nonatomic) NSString *resultOfMove;
+@property (nonatomic) ResultStatus resultStatus;
+@property (nonatomic) NSArray *resultSet;
+@property (nonatomic) int currentDelta;
 
 @property (nonatomic) int score;
 

@@ -48,11 +48,6 @@
 
 - (NSAttributedString *)formatTitleForCard:(SetCard *)card
 {
-    NSMutableString *titlePreFormat = [card.symbol mutableCopy];
-
-    for (int i = 1; i < card.number; i++)
-        [titlePreFormat appendString:card.symbol];
-
     // Color and Shading attributes.
     CGFloat strokeWidth = -4.0f;
     UIColor *strokeColor;
@@ -74,7 +69,7 @@
     }
 
     NSAttributedString *title =
-    [[NSAttributedString alloc] initWithString:titlePreFormat
+    [[NSAttributedString alloc] initWithString:card.contents
                                     attributes:@{ NSStrokeWidthAttributeName : [NSNumber numberWithFloat:strokeWidth],
                                                   NSStrokeColorAttributeName : strokeColor,
                                                   NSForegroundColorAttributeName : fillColor }];
@@ -98,7 +93,31 @@
             cardButton.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:0.3f];
         }
 
-        self.resultsLabel.text = self.game.resultOfMove;
+        // Set the result label text.
+        if (self.game.resultStatus == ResultStatusDefault) {
+            self.resultsLabel.attributedText = nil;
+
+        } else if (self.game.resultStatus == ResultStatusFlip) {
+            NSMutableAttributedString *formattedText = [[NSMutableAttributedString alloc] initWithString:@"Flipped "];
+            [formattedText appendAttributedString:[self formatTitleForCard:self.game.resultSet[0]]];
+            self.resultsLabel.attributedText = formattedText;
+
+        } else if (self.game.resultStatus == ResultStatusMatch || self.game.resultStatus == ResultStatusNoMatch) {
+
+            NSString *matchStatus = self.game.resultStatus == ResultStatusMatch ? @"Matched " : @"Didn't Match ";
+            NSMutableAttributedString *formattedText = [[NSMutableAttributedString alloc] initWithString:matchStatus];
+
+            [formattedText appendAttributedString:[self formatTitleForCard:self.game.resultSet[0]]];
+            [formattedText appendAttributedString:[[NSAttributedString alloc] initWithString:@", "]];
+            [formattedText appendAttributedString:[self formatTitleForCard:self.game.resultSet[1]]];
+            [formattedText appendAttributedString:[[NSAttributedString alloc] initWithString:@", & "]];
+            [formattedText appendAttributedString:[self formatTitleForCard:self.game.resultSet[2]]];
+
+            NSString *delta = [NSString stringWithFormat:@": %+d", self.game.currentDelta];
+            [formattedText appendAttributedString:[[NSAttributedString alloc] initWithString:delta]];
+
+            self.resultsLabel.attributedText = formattedText;
+        }
     }
 
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];

@@ -68,8 +68,23 @@
         } else {
             [cardButton setBackgroundImage:nil forState:UIControlStateNormal];
         }
-        
-        self.resultsLabel.text = self.game.resultOfMove;
+
+        // Set the result label text.
+        if (self.game.resultStatus == ResultStatusDefault) {
+            self.resultsLabel.text = @"";
+        } else if (self.game.resultStatus == ResultStatusFlip) {
+            self.resultsLabel.text = [NSString stringWithFormat:@"Flipped %@", self.game.resultSet[0]];
+        } else if (self.game.resultStatus == ResultStatusMatch) {
+            self.resultsLabel.text = [NSString stringWithFormat:@"Matched %@ & %@: %+d",
+                                      self.game.resultSet[0],
+                                      self.game.resultSet[1],
+                                      self.game.currentDelta];
+        } else if (self.game.resultStatus == ResultStatusNoMatch) {
+            self.resultsLabel.text = [NSString stringWithFormat:@"Didn't match %@ & %@: %+d",
+                                      self.game.resultSet[0],
+                                      self.game.resultSet[1],
+                                      self.game.currentDelta];
+        }
     }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];

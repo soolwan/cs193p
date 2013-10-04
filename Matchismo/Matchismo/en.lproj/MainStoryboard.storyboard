@@ -835,13 +835,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zTH-wU-VH2">
-                                <rect key="frame" x="20" y="357" width="280" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Emb-Cf-YaP">
                                 <rect key="frame" x="132" y="388" width="56" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -853,13 +846,26 @@
                                     <action selector="dealCards:" destination="2" eventType="touchUpInside" id="Nii-Sq-8ID"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hyp-2u-0s6">
+                                <rect key="frame" x="20" y="364" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="smallSystem"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" id="b0d-su-E9h"/>
                     <connections>
                         <outlet property="flipsLabel" destination="04o-3x-aqI" id="VBm-7s-X70"/>
-                        <outlet property="resultsLabel" destination="zTH-wU-VH2" id="Jaa-fM-hD1"/>
+                        <outlet property="resultsLabel" destination="Hyp-2u-0s6" id="Oyv-bi-t8Z"/>
                         <outlet property="scoreLabel" destination="tCQ-Fc-qeU" id="f9j-Mb-7T9"/>
                         <outletCollection property="cardButtons" destination="7Ud-V6-Ugs" id="jCo-sg-mCb"/>
                         <outletCollection property="cardButtons" destination="nhs-3S-yxC" id="QXG-Rw-nt2"/>

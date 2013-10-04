@@ -111,9 +111,12 @@
 
 - (NSString *)contents
 {
-    //NSArray *rankStrings = [PlayingCard rankStrings];
-    //return [rankStrings[self.rank] stringByAppendingString:self.suit];
-    return @"";
+    NSMutableString *contents = [self.symbol mutableCopy];
+
+    for (int i = 1; i < self.number; i++)
+        [contents appendString:self.symbol];
+
+    return contents;
 }
 
 + (NSUInteger)maxNumber { return 3; }

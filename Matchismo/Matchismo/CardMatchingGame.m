@@ -22,7 +22,9 @@
 - (void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    self.resultOfMove = @"";
+    self.resultStatus = ResultStatusDefault;
+    self.resultSet = nil;
+    self.currentDelta = 0;
 
     // Flip playable cards.
     if (!card.isUnplayable) {
@@ -32,25 +34,25 @@
         // how flipping it up impacts our game.
         if (!card.isFaceUp) {
 
-            self.resultOfMove = [NSString stringWithFormat:@"Flipped up %@", card.contents];
+            self.resultStatus = ResultStatusFlip;
+            self.resultSet = @[card];
+            self.currentDelta = 0;
 
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
                     
                     int matchScore = [card match:@[otherCard]];
+
+                    self.resultSet = @[card, otherCard];
                     
                     if (matchScore) {
+                        self.resultStatus = ResultStatusMatch;
                         NSInteger points = matchScore * MATCH_BONUS;
-                        self.resultOfMove = [NSString stringWithFormat:@"Matched %@ & %@. +%d",
-                                             card,
-                                             otherCard,
-                                             points];
+                        self.currentDelta = points;
                         self.score += points;
                     } else {
-                        self.resultOfMove = [NSString stringWithFormat:@"%@ & %@ don't match. -%d",
-                                             card,
-                                             otherCard,
-                                             MISMATCH_PENALTY];
+                        self.resultStatus = ResultStatusNoMatch;
+                        self.currentDelta = -MISMATCH_PENALTY;
                         self.score -= MISMATCH_PENALTY;
                     }
                 }

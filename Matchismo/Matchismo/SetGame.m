@@ -19,7 +19,9 @@
 - (void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    self.resultOfMove = @"";
+    self.resultStatus = ResultStatusDefault;
+    self.resultSet = nil;
+    self.currentDelta = 0;
 
     // Flip playable cards.
     if (!card.isUnplayable) {
@@ -29,7 +31,9 @@
         // how flipping it up impacts our game.
         if (!card.isFaceUp) {
 
-            self.resultOfMove = [NSString stringWithFormat:@"Flipped up %@", card.contents];
+            self.resultStatus = ResultStatusFlip;
+            self.resultSet = @[card];
+            self.currentDelta = 0;
 
             NSMutableArray *otherCards = [[NSMutableArray alloc] init];
 
@@ -41,19 +45,16 @@
                     if ([otherCards count] == 2) {
 
                         int matchScore = [card match:otherCards];
+                        self.resultSet = @[card, otherCards[0], otherCards[1]];
 
                         if (matchScore) {
+                            self.resultStatus = ResultStatusMatch;
                             NSInteger points = matchScore * MATCH_BONUS;
-                            self.resultOfMove = [NSString stringWithFormat:@"Matched %@ & %@. +%d",
-                                                 card,
-                                                 otherCard,
-                                                 points];
+                            self.currentDelta = points;
                             self.score += points;
                         } else {
-                            self.resultOfMove = [NSString stringWithFormat:@"%@ & %@ don't match. -%d",
-                                                 card,
-                                                 otherCard,
-                                                 MISMATCH_PENALTY];
+                            self.resultStatus = ResultStatusNoMatch;
+                            self.currentDelta = -MISMATCH_PENALTY;
                             self.score -= MISMATCH_PENALTY;
                         }
                     }
