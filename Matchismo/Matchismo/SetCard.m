@@ -99,8 +99,8 @@
         }
 
         // Tally the score.
-        if (numberMatches || symbolMatches || shadingMatches || colorMatches) {
-            score = 3;
+        if (numberMatches && symbolMatches && shadingMatches && colorMatches) {
+            score = 6;
         }
 
     } else {
@@ -121,7 +121,8 @@
 
 + (NSArray *)validSymbols
 {
-    return @[@"○", @"□", @"△"];
+    return @[@"▲", @"●", @"■"];
+    //return @[@"○", @"□", @"△"];
 }
 
 + (NSArray *)validShadings
