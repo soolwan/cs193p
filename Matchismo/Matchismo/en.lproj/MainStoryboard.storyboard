@@ -908,21 +908,6 @@
     </scenes>
     <resources>
         <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
-        <image name="cardBack.png" width="400" height="543"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
