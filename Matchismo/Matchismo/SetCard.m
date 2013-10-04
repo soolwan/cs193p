@@ -91,15 +91,15 @@
 
             colorMatches = YES;
 
-        } else { // No score.
-            card2.faceUp = NO;
-            card3.faceUp = NO;
         }
 
         // Tally the score.
         if (numberMatches && symbolMatches && shadingMatches && colorMatches) {
             self.unplayable = card2.unplayable = card3.unplayable = YES;
             score = 6;
+        } else {
+            card2.faceUp = NO;
+            card3.faceUp = NO;
         }
 
     } else {
