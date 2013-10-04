@@ -31,24 +31,31 @@
 
             self.resultOfMove = [NSString stringWithFormat:@"Flipped up %@", card.contents];
 
+            NSMutableArray *otherCards = [[NSMutableArray alloc] init];
+
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
 
-                    int matchScore = [card match:@[otherCard]];
+                    [otherCards addObject:otherCard];
 
-                    if (matchScore) {
-                        NSInteger points = matchScore * MATCH_BONUS;
-                        self.resultOfMove = [NSString stringWithFormat:@"Matched %@ & %@. +%d",
-                                             card,
-                                             otherCard,
-                                             points];
-                        self.score += points;
-                    } else {
-                        self.resultOfMove = [NSString stringWithFormat:@"%@ & %@ don't match. -%d",
-                                             card,
-                                             otherCard,
-                                             MISMATCH_PENALTY];
-                        self.score -= MISMATCH_PENALTY;
+                    if ([otherCards count] == 2) {
+
+                        int matchScore = [card match:otherCards];
+
+                        if (matchScore) {
+                            NSInteger points = matchScore * MATCH_BONUS;
+                            self.resultOfMove = [NSString stringWithFormat:@"Matched %@ & %@. +%d",
+                                                 card,
+                                                 otherCard,
+                                                 points];
+                            self.score += points;
+                        } else {
+                            self.resultOfMove = [NSString stringWithFormat:@"%@ & %@ don't match. -%d",
+                                                 card,
+                                                 otherCard,
+                                                 MISMATCH_PENALTY];
+                            self.score -= MISMATCH_PENALTY;
+                        }
                     }
                 }
 

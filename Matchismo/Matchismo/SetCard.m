@@ -70,23 +70,26 @@
 
             numberMatches = YES;
             self.unplayable = card2.unplayable = card3.unplayable = YES;
+        }
 
-            // Same symbol or 3 different symbols
-        } else if (([self.symbol isEqualToString:card2.symbol] && [self.symbol isEqualToString:card3.symbol]) ||
+        // Same symbol or 3 different symbols
+        if (([self.symbol isEqualToString:card2.symbol] && [self.symbol isEqualToString:card3.symbol]) ||
                    (![self.symbol isEqualToString:card2.symbol] && ![self.symbol isEqualToString:card3.symbol] && ![card2.symbol isEqualToString:card3.symbol])) {
 
             symbolMatches = YES;
             self.unplayable = card2.unplayable = card3.unplayable = YES;
+        }
 
-            // Same shading or 3 different shadings
-        } else if (([self.shading isEqualToString:card2.shading] && [self.shading isEqualToString:card3.shading]) ||
+        // Same shading or 3 different shadings
+        if (([self.shading isEqualToString:card2.shading] && [self.shading isEqualToString:card3.shading]) ||
                    (![self.shading isEqualToString:card2.shading] && ![self.shading isEqualToString:card3.shading] && ![card2.shading isEqualToString:card3.shading])) {
 
             shadingMatches = YES;
             self.unplayable = card2.unplayable = card3.unplayable = YES;
+        }
 
-            // Same color or 3 different colors
-        } else if (([self.color isEqualToString:card2.color] && [self.color isEqualToString:card3.color]) ||
+        // Same color or 3 different colors
+        if (([self.color isEqualToString:card2.color] && [self.color isEqualToString:card3.color]) ||
                    (![self.color isEqualToString:card2.color] && ![self.color isEqualToString:card3.color] && ![card2.color isEqualToString:card3.color])) {
 
             colorMatches = YES;

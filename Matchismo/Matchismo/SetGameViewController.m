@@ -90,10 +90,12 @@
 
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
+        cardButton.alpha = card.isUnplayable ? 0.0f : 1.0f;
 
         if (cardButton.selected == NO) {
+            cardButton.backgroundColor = [UIColor clearColor];
         } else {
+            cardButton.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:0.3f];
         }
 
         self.resultsLabel.text = self.game.resultOfMove;
