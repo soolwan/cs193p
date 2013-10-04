@@ -32,6 +32,8 @@
 
 - (void)updateUI
 {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
 }
 
 - (IBAction)flipCard:(UIButton *)sender

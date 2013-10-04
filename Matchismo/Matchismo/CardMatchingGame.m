@@ -92,8 +92,7 @@
                 }
 
             }
-
-                        self.score -= FLIP_COST; // If the card was face-down, flipping costs.
+            self.score -= FLIP_COST; // If the card was face-down, flipping costs.
         }
         card.faceUp = !card.isFaceUp; // Just flip the card.
     }

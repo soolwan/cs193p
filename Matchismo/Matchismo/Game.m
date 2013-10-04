@@ -13,16 +13,22 @@
 - (id)initWithCardCount:(NSUInteger)cardCount
               usingDeck:(Deck *)deck
 {
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 - (void)flipCardAtIndex:(NSUInteger)index
 {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index
 {
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 @end
