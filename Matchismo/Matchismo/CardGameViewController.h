@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game.h"
 
-@interface CardGameViewController : UIViewController
+@interface CardGameViewController : UIViewController {
+    Game *_game;
+}
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (strong, nonatomic) Game *game;
+
+@property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
