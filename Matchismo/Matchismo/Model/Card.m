@@ -16,15 +16,13 @@
 
 - (int)match:(NSArray *)otherCards
 {
-    int score = 0;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
 
-    for (Card *card in otherCards) {
-        if ([card.contents isEqualToString:self.contents]) {
-            score = 1;
-        }
-    }
-
-    return score;
+- (NSString *)description {
+    return self.contents;
 }
 
 @end
