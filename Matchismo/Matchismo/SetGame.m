@@ -12,7 +12,7 @@
 @implementation SetGame
 
 #define FLIP_COST 1
-#define MISMATCH_PENALTY 2
+#define MISMATCH_PENALTY 6
 #define MATCH_BONUS 4
 
 // Our game logic.

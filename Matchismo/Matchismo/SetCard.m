@@ -69,7 +69,6 @@
             (self.number != card2.number && self.number != card3.number && card2.number != card3.number)) {
 
             numberMatches = YES;
-            self.unplayable = card2.unplayable = card3.unplayable = YES;
         }
 
         // Same symbol or 3 different symbols
@@ -77,7 +76,6 @@
                    (![self.symbol isEqualToString:card2.symbol] && ![self.symbol isEqualToString:card3.symbol] && ![card2.symbol isEqualToString:card3.symbol])) {
 
             symbolMatches = YES;
-            self.unplayable = card2.unplayable = card3.unplayable = YES;
         }
 
         // Same shading or 3 different shadings
@@ -85,7 +83,6 @@
                    (![self.shading isEqualToString:card2.shading] && ![self.shading isEqualToString:card3.shading] && ![card2.shading isEqualToString:card3.shading])) {
 
             shadingMatches = YES;
-            self.unplayable = card2.unplayable = card3.unplayable = YES;
         }
 
         // Same color or 3 different colors
@@ -93,8 +90,6 @@
                    (![self.color isEqualToString:card2.color] && ![self.color isEqualToString:card3.color] && ![card2.color isEqualToString:card3.color])) {
 
             colorMatches = YES;
-            self.unplayable = card2.unplayable = card3.unplayable = YES;
-
 
         } else { // No score.
             card2.faceUp = NO;
@@ -103,6 +98,7 @@
 
         // Tally the score.
         if (numberMatches && symbolMatches && shadingMatches && colorMatches) {
+            self.unplayable = card2.unplayable = card3.unplayable = YES;
             score = 6;
         }
 
