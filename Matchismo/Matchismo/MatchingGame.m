@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Sean Coleman. All rights reserved.
 //
 
-#import "CardMatchingGame.h"
+#import "MatchingGame.h"
 #import "Deck.h"
 
-@interface CardMatchingGame ()
+@interface MatchingGame ()
 @end
 
-@implementation CardMatchingGame
+@implementation MatchingGame
 
 #define FLIP_COST 1
 #define MISMATCH_PENALTY 2

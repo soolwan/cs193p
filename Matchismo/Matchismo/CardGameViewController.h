@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "Deck.h"
 
-@interface CardGameViewController : UIViewController {
-    Game *_game;
-}
+@interface CardGameViewController : UIViewController
 
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) Game *game;
+@property (nonatomic) NSUInteger startingCardCount; // Abstract
 
-@property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+- (Game *)createGame; // Abstract
+- (Deck *)createDeck; // Abstract
+- (void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card;
 
 @end

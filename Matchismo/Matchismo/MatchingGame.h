@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Game.h"
 
-@interface CardMatchingGame : Game
+@interface MatchingGame : Game
 
 @end
